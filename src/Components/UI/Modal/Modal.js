@@ -5,7 +5,7 @@ import Backdrop from "../Backdrop/Backdrop";
 
 class Modal extends Component {
     shouldComponentUpdate(nextProps, nextState, nextContext) {
-        return nextProps.show !== this.props.show //if there is more props to check we can use PureComponent
+        return nextProps.show !== this.props.show || nextProps.children !== this.props.children // if there is more props to check we can use PureComponent
     }
 
     render() {
@@ -22,4 +22,4 @@ class Modal extends Component {
         )
     }
 }
-export default Modal
+export default Modal;
