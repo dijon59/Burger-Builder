@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Modal from "../../Components/UI/Modal/Modal";
-import Aux from '../Aux'
-
+import Aux from '../Aux';
 
 const withErrorHandler = ( WrappedComponent, axios ) => {
     return class extends Component {
@@ -19,14 +18,20 @@ const withErrorHandler = ( WrappedComponent, axios ) => {
             // })
         }
         componentWillMount() {
-            axios.interceptors.request.use( request => {
+            this.reqInterceptor = axios.interceptors.request.use( request => {
                 this.setState({error: null});
                 return request
             })
-            axios.interceptors.response.use(response => response, error => {
+            this.respInterceptor = axios.interceptors.response.use(response => response, error => {
                 this.setState({error: error});
             })
+        }
 
+        componentWillUnmount() {
+            // used when a component is not required anymore
+            console.log('Will Unmount', this.respInterceptor, this.reqInterceptor)
+            axios.interceptors.request.eject(this.reqInterceptor);
+            axios.interceptors.response.eject(this.respInterceptor);
         }
 
         errorConfirmedHandler = () => {

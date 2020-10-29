@@ -16,7 +16,6 @@ const INGREDIENT_PRICES = {
 }
 
 class BurgerBuilder extends Component {
-
     state = {
         ingredients: null,
         totalPrice: 4,
@@ -71,7 +70,6 @@ class BurgerBuilder extends Component {
         if (oldCount <= 0) {
             return;
         }
-
         const updatedCounted = oldCount - 1
         const updatedIngredient = {
             ...this.state.ingredients // we use the spread operator because the state should be updated in a unmutable way
@@ -83,11 +81,9 @@ class BurgerBuilder extends Component {
         this.setState({totalPrice: newPrice, ingredients: updatedIngredient})
         this.updatePurchaseState(updatedIngredient)
     }
-
     purchaseCancelHandler() {
         this.setState({purchasing: false})
     }
-
     purchaseContinueHandler() {
         // alert('You Continue')
         this.setState({loading: true})
@@ -113,7 +109,6 @@ class BurgerBuilder extends Component {
                  this.setState({loading: false, purchasing: false})
              })
     }
-
     render() {
         const disabledInfo = {
             ...this.state.ingredients
