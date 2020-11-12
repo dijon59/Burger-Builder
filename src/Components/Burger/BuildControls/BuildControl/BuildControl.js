@@ -8,8 +8,9 @@ class BuildControl extends Component {
                 <div className={classes.Label}>{this.props.label}</div>
                 <button className={classes.Less} onClick={this.props.removed} disabled={this.props.disabled}>Less</button>
                 <button className={classes.More} onClick={this.props.added}>More</button>
-            </div>)
+            </div>
+        )
     }
 }
 
-export default BuildControl
+export default BuildControl;
